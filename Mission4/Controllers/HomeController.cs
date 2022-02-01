@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission5.Models;
 using System;
@@ -27,11 +28,6 @@ namespace Mission5.Controllers
             
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Podcasts()
         {
             return View();
@@ -51,10 +47,26 @@ namespace Mission5.Controllers
             return View("Index");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult MovieList()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var movies = MovieContext.Movies
+                .Include(x => x.Category)
+                .ToList();
+            return View(movies);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int movieid)
+        {
+            ViewBag.Categories = MovieContext.Categories.ToList();
+
+            var movie = MovieContext.Movies.Single(x => x.MovieId == movieid);
+            return View("Movies", movie);
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
         }
     }
 }

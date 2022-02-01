@@ -1199,11 +1199,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission4\\Mission4\\Mission5.csproj",
+      "projectUniqueName": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission5\\Mission4\\Mission5.csproj",
       "projectName": "Mission5",
-      "projectPath": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission4\\Mission4\\Mission5.csproj",
+      "projectPath": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission5\\Mission4\\Mission5.csproj",
       "packagesPath": "C:\\Users\\herdt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission4\\Mission4\\obj\\",
+      "outputPath": "C:\\Users\\herdt\\OneDrive\\Documents\\GitHub\\Mission5\\Mission4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\herdt\\AppData\\Roaming\\NuGet\\NuGet.Config",

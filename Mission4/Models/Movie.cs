@@ -12,8 +12,10 @@ namespace Mission5.Models
         [Required]
         public int MovieId { get; set; }
 
+        // Foreign Key
         [Required]
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         [Required]
         public string Title { get; set; }

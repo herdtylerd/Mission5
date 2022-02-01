@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mission4.Models;
+using Mission5.Models;
 
-namespace Mission4.Migrations
+namespace Mission5.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20220126191404_Initial")]
+    [Migration("20220201183943_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,15 +17,61 @@ namespace Mission4.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
-            modelBuilder.Entity("Mission4.Models.Movie", b =>
+            modelBuilder.Entity("Mission5.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Fantasy"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Romance"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Thriller"
+                        });
+                });
+
+            modelBuilder.Entity("Mission5.Models.Movie", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -54,13 +100,15 @@ namespace Mission4.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Movies");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Comedy/Drama",
+                            CategoryId = 3,
                             Director = "Nancy Meyers",
                             Edited = false,
                             Rating = "PG13",
@@ -70,7 +118,7 @@ namespace Mission4.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Fantasy",
+                            CategoryId = 4,
                             Director = "David Yates",
                             Edited = false,
                             Rating = "PG13",
@@ -80,13 +128,22 @@ namespace Mission4.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Family/Comedy",
+                            CategoryId = 1,
                             Director = "John Pasquin",
                             Edited = false,
                             Rating = "PG",
                             Title = "The Santa Clause",
                             Year = 1994
                         });
+                });
+
+            modelBuilder.Entity("Mission5.Models.Movie", b =>
+                {
+                    b.HasOne("Mission5.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
