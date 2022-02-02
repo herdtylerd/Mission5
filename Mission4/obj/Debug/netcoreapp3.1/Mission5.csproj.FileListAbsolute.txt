@@ -78,3 +78,4 @@ C:\Users\herdt\OneDrive\Documents\GitHub\Mission5\Mission4\obj\Debug\netcoreapp3
 C:\Users\herdt\OneDrive\Documents\GitHub\Mission5\Mission4\obj\Debug\netcoreapp3.1\Mission5.pdb
 C:\Users\herdt\OneDrive\Documents\GitHub\Mission5\Mission4\obj\Debug\netcoreapp3.1\Mission5.genruntimeconfig.cache
 C:\Users\herdt\OneDrive\Documents\GitHub\Mission5\Mission4\obj\Debug\netcoreapp3.1\Razor\Views\Home\MovieList.cshtml.g.cs
+C:\Users\herdt\OneDrive\Documents\GitHub\Mission5\Mission4\obj\Debug\netcoreapp3.1\Razor\Views\Home\Delete.cshtml.g.cs

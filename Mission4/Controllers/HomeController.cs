@@ -33,20 +33,33 @@ namespace Mission5.Controllers
             return View();
         }
 
+        // Add a movie
         [HttpGet]
         public IActionResult Movies()
         {
+            ViewBag.Categories = MovieContext.Categories.ToList();
             return View();
         }
 
         [HttpPost]
         public IActionResult Movies(Movie m)
         {
-            MovieContext.Add(m);
-            MovieContext.SaveChanges();
-            return View("Index");
+            // See if input was valid, if not return errors
+            if (ModelState.IsValid)
+            {
+                MovieContext.Add(m);
+                MovieContext.SaveChanges();
+                return View("Index");
+            }
+            else
+            {
+                ViewBag.Categories = MovieContext.Categories.ToList();
+                return View();
+            }
+            
         }
 
+        // List all movies
         public IActionResult MovieList()
         {
             var movies = MovieContext.Movies
@@ -55,6 +68,8 @@ namespace Mission5.Controllers
             return View(movies);
         }
 
+
+        // Edit a movie
         [HttpGet]
         public IActionResult Edit(int movieid)
         {
@@ -64,9 +79,30 @@ namespace Mission5.Controllers
             return View("Movies", movie);
         }
 
-        public IActionResult Delete()
+        [HttpPost]
+        public IActionResult Edit(Movie m)
         {
-            return View();
+            MovieContext.Update(m);
+            MovieContext.SaveChanges();
+            return RedirectToAction("MovieList");
+        }
+
+        // Delete a movie
+        [HttpGet]
+        public IActionResult Delete(int movieid)
+        {
+            var movie = MovieContext.Movies.Single(x => x.MovieId == movieid);
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Delete (Movie m)
+        {
+            MovieContext.Movies.Remove(m);
+            MovieContext.SaveChanges();
+
+            return RedirectToAction("MovieList");
         }
     }
 }
